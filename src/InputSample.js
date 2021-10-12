@@ -1,22 +1,42 @@
 import React, { useState } from "react";
 
 function InputSample() {
-    const [text, setText] = useState('');
+    // 객체 형태의 state
+    const [inputs, setInputs] = useState({
+        name: '',
+        nickname: ''
+    });
+
+    const { name, nickname } = inputs; // 구조 분해 할당
 
     const onChange = e => {
-        setText(e.target.value);
+        const { value, name } = e.target;
+
+        // 기존의 inputs을 그대로 가져온 뒤에, [name] property를 오버라이딩해주는 방식
+        // 리액트에서 객체를 수정할 때 input[name]의 식으로 직접 수정하면 상태 변화가 아니므로
+        // 업데이트 되지 않는다. 따라서 기존 객체를 직접 수정하는 것이 아니라, 새로운 객체를 만들고
+        // 새 객체에 변화를 주는 방식으로 진행해야 한다.
+        setInputs({
+            ...inputs,
+            [name]: value
+        })
     }
 
     const onReset = () => {
-        setText('');
+        setInputs({
+            name: '',
+            nickname: '',
+        })
     }
 
     return (
         <div>
-            <input onChange={onChange} value={text} />
+            <input name='name' placeholder='이름' onChange={onChange} value={name} />
+            <input name='nickname' placeholder='닉네임' onChange={onChange} value={nickname} />
             <button onClick={onReset}>초기화</button>
             <div>
-                <b>값: {text}</b>
+                <b>값: </b>
+                {name} ({nickname})
             </div>
         </div>
     )
