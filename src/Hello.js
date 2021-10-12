@@ -1,7 +1,12 @@
 import React from 'react';
 
-function Hello() {
-    return <div>hello world!</div>
+function Hello({ color, name }) { // 비구조화 할당
+    return <div style={{ color }}>hello {name}!</div>
+}
+
+// Hello 컴포넌트의 기본 props 설정
+Hello.defaultProps = {
+    name: "이름없음"
 }
 
 export default Hello;
