@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// ReactDom.render: 브라우저에 있는 실제 DOM 내부에 리액트 컴포넌트를 렌더링
 ReactDOM.render(
   <React.StrictMode>
     <App />
