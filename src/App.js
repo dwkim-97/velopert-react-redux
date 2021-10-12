@@ -1,13 +1,9 @@
 import React from 'react';
-import Counter from './Counter';
-import Message from './Message';
+import InputSample from './InputSample';
 
 function App() {
   return (
-    <>
-      <Counter />
-      <Message />
-    </>
+    <InputSample />
   );
 }
 
