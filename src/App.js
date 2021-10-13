@@ -21,17 +21,20 @@ function App() {
     {
       id: 1,
       username: 'velopert',
-      email: 'velopert@a.com'
+      email: 'velopert@a.com',
+      active: true
     },
     {
       id: 2,
       username: 'tester',
-      email: 'tester@e.com'
+      email: 'tester@e.com',
+      active: false
     },
     {
       id: 3,
       username: 'kdw',
-      email: 'kdw@naver.com'
+      email: 'kdw@naver.com',
+      active: false
     }
   ]);
 
@@ -42,7 +45,7 @@ function App() {
   const onCreate = () => {
     const user = {
       id: nextId.current,
-      username, email
+      username, email,
     }
     // setUsers([...users, user]); // spread 연산자 사용
     setUsers(users.concat(user)); // concat 함수 사용
@@ -57,10 +60,18 @@ function App() {
     setUsers(users.filter(user => user.id !== id))
   }
 
+  const onToggle = id => {
+    // map 함수를 사용하면 불변성을 지키면서 
+    setUsers(
+      users.map(user => user.id === id ? {
+        ...user, active: !user.active
+      } : user))
+  }
+
   return (
     <>
       <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate} />
-      <UserList users={users} onRemove={onRemove} />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     </>
 
   );
