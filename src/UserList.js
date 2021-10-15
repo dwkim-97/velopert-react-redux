@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 function User({ user, onRemove, onToggle }) {
 
@@ -13,12 +13,6 @@ function User({ user, onRemove, onToggle }) {
     // 3. deps 자체를 생략할 경우
     //   a) 컴포넌트가 리렌더링 될 때마다 등록된 함수가 호출됨. (render)
     //   b) 컴포넌트가 리렌더링 되기 직전에 cleanUp 함수가 호출됨. (willRender?)
-    useEffect(() => {
-        console.log('useEffect', user.username);
-        return () => {
-            console.log('return', user.username);
-        };
-    });
 
     return (
         <div>
